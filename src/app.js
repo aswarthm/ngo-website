@@ -23,8 +23,40 @@ const dbRef = ref(db);
 get(child(dbRef, "/")).then((snapshot) => {
     console.log(snapshot.val())
      const teacherName = document.getElementById("teacherName");
+     const schoolAddress = document.getElementById("schoolAddress");
+     const designation = document.getElementById("designation");
+     const gender = document.getElementById("gender");
+     const reservation = document.getElementById("reservation");
+     const dateOfBirth = document.getElementById("dateOfBirth");
+     const maritalStatus = document.getElementById("maritalStatus");
+     const kids = document.getElementById("kids");
+     const kidsEducation = document.getElementById("kidsEducation");
+     const hobbies = document.getElementById("hobbies");
+     const teacherAddress = document.getElementById("teacherAddress");
+
+
      teacherName.innerHTML = snapshot.val().teacherName;
+        schoolAddress.innerHTML = snapshot.val().schoolAddress;
+        designation.innerHTML = snapshot.val().designation;
+        gender.innerHTML = snapshot.val().gender;
+        reservation.innerHTML = snapshot.val().reservation;
+        dateOfBirth.innerHTML = snapshot.val().dateOfBirth;
+        maritalStatus.innerHTML = snapshot.val().married;
+        kids.innerHTML = snapshot.val().noOfKids;
+        kidsEducation.innerHTML = listToStr(snapshot.val().kidsEducation);
+        hobbies.innerHTML = snapshot.val().hobbies;
+        teacherAddress.innerHTML = snapshot.val().teacherAddress + "<br>" + snapshot.val().teacherPhoneNumber;
     }).catch((error) => {  
         console.error(error);
     }
 );
+
+function listToStr(arr){
+    var strr = ""
+
+    for (let i = 0; i < arr.length; i++) {
+        strr += (i+1) + ")" + arr[i] + "<br>";
+    }
+
+    return strr;
+}
